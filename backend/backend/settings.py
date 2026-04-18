@@ -157,7 +157,7 @@ AUTHENTICATION_BACKENDS = (
 
 
 # Google Auth
-SOCIALACCOUNT_ADAPTER = 'backend.adapter.MySocialAccountAdapter'
+SOCIALACCOUNT_ADAPTER = 'users.adapters.MySocialAccountAdapter'
 
 SOCIALACCOUNT_PROVIDERS = {
     'google': {
@@ -185,3 +185,9 @@ SIMPLE_JWT = {
     'BLACKLIST_AFTER_ROTATION': True,
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+
+LOGIN_REDIRECT_URL = '/api/auth/google/callback/'
+
+FRONTEND_URL = "http://localhost:3000/"
