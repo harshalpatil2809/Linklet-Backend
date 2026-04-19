@@ -54,8 +54,14 @@ INSTALLED_APPS = [
 
     # providers (example: Google)
     'allauth.socialaccount.providers.google',
+
+    'cloudinary_storage',
+    'cloudinary',
+
+    #Apps
     'users',
-    'follows'
+    'follows',
+    'profiles',
 ]
 
 MIDDLEWARE = [
@@ -192,3 +198,13 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 LOGIN_REDIRECT_URL = '/api/auth/google/callback/'
 
 FRONTEND_URL = "http://localhost:3000/"
+
+# Cloudinary Settings
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
+}
+
+# Default File Storage ko Cloudinary par set karein
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
