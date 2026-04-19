@@ -10,8 +10,8 @@ User = get_user_model()
 class FollowToggleView(APIView):
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, user_id):
-        target_user = get_object_or_404(User, id=user_id)
+    def post(self, request, username):
+        target_user = get_object_or_404(User, username = username)
         
         if request.user == target_user:
             return Response({"error": "You cannot follow yourself."}, status=status.HTTP_400_BAD_REQUEST)
