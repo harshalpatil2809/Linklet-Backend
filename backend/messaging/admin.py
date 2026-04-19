@@ -3,4 +3,5 @@ from messaging.models import Conversation,Message
 # Register your models here.
 
 
-admin.site.register(Conversation,Message)
+admin.site.register(Conversation)
+admin.site.register(Message)
