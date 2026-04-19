@@ -1,0 +1,6 @@
+from django.contrib import admin
+from messaging.models import Conversation,Message
+# Register your models here.
+
+
+admin.site.register(Conversation,Message)
