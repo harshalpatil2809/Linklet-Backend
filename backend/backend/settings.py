@@ -62,7 +62,7 @@ INSTALLED_APPS = [
     'users',
     'follows',
     'profiles',
-    'messaging'
+    'messaging',
 ]
 
 MIDDLEWARE = [
