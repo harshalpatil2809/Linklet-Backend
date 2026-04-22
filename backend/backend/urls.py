@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from rest_framework_simplejwt.views import TokenRefreshView
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +28,4 @@ urlpatterns = [
     path('api/follows/', include('follows.urls')),
     path('api/profiles/', include('profiles.urls')),
     path('api/messages/',include('messaging.urls'))
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
