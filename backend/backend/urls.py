@@ -19,9 +19,14 @@ from django.urls import path,include
 from rest_framework_simplejwt.views import TokenRefreshView
 from django.conf import settings
 from django.conf.urls.static import static
+from django.http import HttpResponse
+
+def ping(request):
+    return HttpResponse("Server is up!", status=200)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('ping/', ping),
     path('api/auth/', include('users.urls')),
     path('accounts/', include('allauth.urls')),
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
