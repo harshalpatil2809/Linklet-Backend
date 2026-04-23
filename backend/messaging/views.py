@@ -12,8 +12,8 @@ class SendMessageView(generics.CreateAPIView):
     serializer_class = MessageSerializer
     permission_classes = [permissions.IsAuthenticated]
 
-    def post(self, request, username):
-        receiver = get_object_or_404(User, username=username)
+    def post(self, request, user_id):
+        receiver = get_object_or_404(User, id=user_id)
         sender = request.user
 
         # 1. Check Mutual Follow
@@ -50,26 +50,25 @@ class MessageHistoryView(generics.ListAPIView):
     permission_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
-        other_username = self.kwargs.get('username')
-        other_user = get_object_or_404(User, username=other_username)
+        other_user_id = self.kwargs.get('user_id')
+        other_user = get_object_or_404(User, id=other_user_id)
     
         conversation = Conversation.objects.filter(
             participants=self.request.user
-            ).filter(
+        ).filter(
             participants=other_user
-            ).first()
+        ).first()
 
         if conversation:
             Message.objects.filter(
-            conversation=conversation, 
-            sender=other_user, 
-            is_read=False
+                conversation=conversation, 
+                sender=other_user, 
+                is_read=False
             ).update(is_read=True)
         
             return Message.objects.filter(conversation=conversation).order_by('timestamp')
     
         return Message.objects.none()
-    
 
 
 class InboxListView(generics.ListAPIView):
