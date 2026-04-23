@@ -1,0 +1,47 @@
+#! backend-deployment.yaml
+# Generated code, do not edit
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: backend
+    namespace: backend
+    labels:
+        com.docker.compose.project: backend
+        com.docker.compose.service: backend
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            com.docker.compose.project: backend
+            com.docker.compose.service: backend
+    strategy:
+        type: Recreate
+    template:
+        metadata:
+            labels:
+                com.docker.compose.project: backend
+                com.docker.compose.service: backend
+                com.docker.compose.network.default: "true"
+        spec:
+            containers:
+                - name: linklet-backend-container
+                  image: backend-backend
+                  imagePullPolicy: IfNotPresent
+                  args:
+                    - python
+                    - manage.py
+                    - runserver
+                    - 0.0.0.0:8000
+                  env:
+                    - name: DATABASE_URL
+                      value: "postgresql://postgres.qsiinpzrlyrdzaayukas:harshal_patil28.09@aws-1-ap-south-1.pooler.supabase.com:6543/postgres"
+                  ports:
+                    - name: backend-8000
+                      containerPort: 8000
+                  volumeMounts:
+                    - name: app
+                      mountPath: /app
+            volumes:
+                - name: app
+                  hostPath:
+                    path: D:\Linklet\Linklet-Backend\backend
