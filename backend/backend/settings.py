@@ -28,7 +28,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['linklet-backend-efe3.onrender.com']
+ALLOWED_HOSTS = ['linklet-backend-efe3.onrender.com','127.0.0.1']
 
 SITE_ID = 1
 
@@ -149,8 +149,12 @@ USE_TZ = True
 STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 
+CORS_ALLOWED_ORIGINS = [
+    "https://linklet-by-harshal.vercel.app", # Aapka live frontend URL
+    "http://localhost:3000",
+]
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_CREDENTIALS = True
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
@@ -214,3 +218,13 @@ CLOUDINARY_STORAGE = {
 
 # Default File Storage ko Cloudinary par set karein
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://linklet-backend-efe3.onrender.com",
+    "http://localhost:3000", 
+]
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = 'None'
+SESSION_COOKIE_SAMESITE = 'None'
