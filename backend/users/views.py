@@ -110,5 +110,5 @@ def google_login_callback(request):
     access_token = str(refresh.access_token)
     refresh_token = str(refresh)
 
-    frontend_url = "https://intellex-ai-harshal.vercel.app/auth-callback"
+    frontend_url = "https://linklet-by-harshal.vercel.app/auth-callback"
     return redirect(f"{frontend_url}?access={access_token}&refresh={refresh_token}")

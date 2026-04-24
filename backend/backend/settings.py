@@ -207,7 +207,7 @@ SOCIALACCOUNT_LOGIN_ON_GET = True
 
 LOGIN_REDIRECT_URL = '/api/auth/google/callback/'
 
-FRONTEND_URL = "http://localhost:3000/"
+FRONTEND_URL = "https://linklet-by-harshal.vercel.app"
 
 # Cloudinary Settings
 CLOUDINARY_STORAGE = {
