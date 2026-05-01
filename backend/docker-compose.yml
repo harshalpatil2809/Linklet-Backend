@@ -12,3 +12,10 @@ services:
     environment:
       # Direct Supabase Connection
       - DATABASE_URL=postgresql://postgres.qsiinpzrlyrdzaayukas:harshal_patil28.09@aws-1-ap-south-1.pooler.supabase.com:6543/postgres
+    depends_on:
+      - redis
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
