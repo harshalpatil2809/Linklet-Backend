@@ -109,7 +109,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels.layers.InMemoryChannelLayer',
         'CONFIG': {
-            'hosts': [('redis', 6379)],
+            'hosts': [os.environ.get('REDIS_URL', 'redis://localhost:6379')],
         },
     },
 }

@@ -26,4 +26,4 @@ COPY . /app/
 EXPOSE 8000
 
 # 8. Server start karein
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["uvicorn", "backend.asgi:application", "--host", "0.0.0.0", "--port", "10000"]
