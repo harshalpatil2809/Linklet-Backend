@@ -20,6 +20,10 @@ RUN pip install --upgrade pip && \
 
 COPY . /app/
 
+RUN apt-get update && apt-get install -y dos2unix --no-install-recommends && \
+    dos2unix /app/start.sh && \
+    rm -rf /var/lib/apt/lists/*
+
 RUN chmod +x /app/start.sh
 
 EXPOSE 8000
