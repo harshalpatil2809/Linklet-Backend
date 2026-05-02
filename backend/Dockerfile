@@ -18,7 +18,7 @@ COPY requirements.txt /app/
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-COPY . /app/
+COPY start.sh /app/start.sh
 
 RUN apt-get update && apt-get install -y dos2unix --no-install-recommends && \
     dos2unix /app/start.sh && \
