@@ -48,7 +48,8 @@ def login(request):
             'access': str(refresh.access_token),
             'refresh': str(refresh),
             'username': user.username,
-            'userid': user.id
+            'userid': user.id,
+            'id': user.id
         }, status=status.HTTP_200_OK)
     else:
         print(f"Authentication failed for user: {username}") # Debug print
