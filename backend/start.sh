@@ -11,9 +11,11 @@ python manage.py migrate --noinput
 echo "▶ Collecting static files..."
 python manage.py collectstatic --noinput
 
-echo "▶ Starting ASGI server with Uvicorn..."
+PORT="${PORT:-8000}"
+
+echo "▶ Starting ASGI server with Uvicorn on port $PORT..."
 uvicorn backend.asgi:application \
     --host 0.0.0.0 \
-    --port 8000 \
+    --port "$PORT" \
     --workers 1 \
     --log-level info
