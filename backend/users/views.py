@@ -7,6 +7,7 @@ from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth import authenticate
 from rest_framework.permissions import IsAuthenticated
 from django.shortcuts import redirect
+from urllib.parse import quote
 
 
 @api_view(['POST'])
@@ -113,4 +114,6 @@ def google_login_callback(request):
     refresh_token = str(refresh)
 
     frontend_url = "https://linklet-by-harshal.vercel.app/auth-callback"
-    return redirect(f"{frontend_url}?access={access_token}&refresh={refresh_token}")
+    return redirect(
+        f"{frontend_url}?access={quote(access_token)}&refresh={quote(refresh_token)}&userid={user.id}&id={user.id}"
+    )
