@@ -32,5 +32,6 @@ urlpatterns = [
     path('api/auth/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/follows/', include('follows.urls')),
     path('api/profiles/', include('profiles.urls')),
-    path('api/messaging/',include('messaging.urls'))
+    path('api/messaging/',include('messaging.urls')),
+    path('api/notification', include('notification.urls'))
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
