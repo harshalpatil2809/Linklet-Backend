@@ -32,7 +32,8 @@ ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
     '127.0.0.1:8000',
-    'linklet-backend-efe3.onrender.com', # Aapka Render URL
+    'linklet-backend-efe3.onrender.com',
+    'linklet-backend-bpud.onrender.com',
 ]
 
 SITE_ID = 1
@@ -242,6 +243,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 CSRF_TRUSTED_ORIGINS = [
     "https://linklet-backend-efe3.onrender.com",
+    "https://linklet-backend-bpud.onrender.com",
     "http://localhost:3000", 
 ]
 
