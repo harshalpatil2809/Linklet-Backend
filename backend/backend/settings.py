@@ -172,7 +172,7 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 
 CORS_ALLOWED_ORIGINS = [
-    "https://linklet-by-harshal.vercel.app", # Aapka live frontend URL
+    "https://linklet-by-harshal.vercel.app",
     "http://localhost:3000",
 ]
 
