@@ -36,7 +36,7 @@ ALLOWED_HOSTS = [
     'linklet-backend-bpud.onrender.com',
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 
 # Application definition
 
