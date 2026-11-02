@@ -1,3 +1,4 @@
+
 #!/usr/bin/env bash
 set -e
 
@@ -13,9 +14,9 @@ python manage.py collectstatic --noinput
 
 PORT="${PORT:-8000}"
 
-echo "▶ Starting ASGI server with Uvicorn on port $PORT..."
-uvicorn backend.asgi:application \
-    --host 0.0.0.0 \
-    --port "$PORT" \
-    --workers 1 \
-    --log-level info
+echo "▶ Starting ASGI server with Daphne on port ${PORT}..."
+
+exec python -m daphne \
+    -b 0.0.0.0 \
+    -p "$PORT" \
+    backend.asgi:application
