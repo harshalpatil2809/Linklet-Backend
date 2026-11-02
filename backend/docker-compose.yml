@@ -1,21 +1,30 @@
-version: '3.8'
 
 services:
   backend:
     build: .
     container_name: linklet_backend_container
-    command: python manage.py runserver 0.0.0.0:8000
+    command: python -m daphne -b 0.0.0.0 -p 8000 backend.asgi:application
     volumes:
       - .:/app
     ports:
       - "8000:8000"
+    env_file:
+      - .env
     environment:
-      # Direct Supabase Connection
-      - DATABASE_URL=postgresql://postgres.qsiinpzrlyrdzaayukas:harshal_patil28.09@aws-1-ap-south-1.pooler.supabase.com:6543/postgres
+      REDIS_URL: redis://redis:6379/0
     depends_on:
-      - redis
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
 
   redis:
     image: redis:alpine
+    container_name: linklet_redis_container
     ports:
       - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
