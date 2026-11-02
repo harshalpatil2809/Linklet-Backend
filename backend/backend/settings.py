@@ -36,7 +36,7 @@ ALLOWED_HOSTS = [
     'linklet-backend-bpud.onrender.com',
 ]
 
-SITE_ID = 1
+SITE_ID = 2
 
 # Application definition
 
@@ -268,5 +268,8 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+<<<<<<< HEAD
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+=======
+>>>>>>> a3658150e2e1e4e1725415fa5dcbda27dfaa315a
