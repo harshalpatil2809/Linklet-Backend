@@ -258,18 +258,16 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3000", 
 ]
 
+
 CSRF_COOKIE_SECURE = True
 SESSION_COOKIE_SECURE = True
-CSRF_COOKIE_SAMESITE = 'None'
-SESSION_COOKIE_SAMESITE = 'None'
+CSRF_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_SAMESITE = "None"
 
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "https"
 
-STATIC_ROOT = BASE_DIR / 'staticfiles'
-<<<<<<< HEAD
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
-DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-=======
->>>>>>> a3658150e2e1e4e1725415fa5dcbda27dfaa315a
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
