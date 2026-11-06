@@ -119,6 +119,19 @@ CHANNEL_LAYERS = {
     },
 }
 
+#Cache Configuration
+CACHES = {
+    "default": {
+        "BACKEND": "django.core.cache.backends.redis.RedisCache",
+        "LOCATION": os.getenv(
+            "CACHE_REDIS_URL",
+            "redis://localhost:6379/1"
+        ),
+        "KEY_PREFIX": "linklet",
+        "TIMEOUT": 60,
+    }
+}
+
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
@@ -188,6 +201,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.AllowAny',
     ),
+
 }
 
 AUTHENTICATION_BACKENDS = (
@@ -258,6 +272,7 @@ CSRF_TRUSTED_ORIGINS = [
     "https://linklet-backend-bpud.onrender.com",
     "http://localhost:3000", 
 ]
+
 
 
 CSRF_COOKIE_SECURE = True

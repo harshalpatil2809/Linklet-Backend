@@ -1,6 +1,6 @@
 
-#!/usr/bin/env bash
-set -e
+#!/bin/sh
+set -eu
 
 echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 echo "  Linklet Backend — Starting up..."
@@ -11,6 +11,9 @@ python manage.py migrate --noinput
 
 echo "▶ Collecting static files..."
 python manage.py collectstatic --noinput
+
+echo "▶ Starting notification cleanup scheduler..."
+python manage.py run_notification_cleanup &
 
 PORT="${PORT:-8000}"
 

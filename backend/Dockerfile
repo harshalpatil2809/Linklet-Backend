@@ -7,28 +7,31 @@ ENV PYTHONDONTWRITEBYTECODE=1 \
 
 WORKDIR /app
 
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpq-dev \
     curl \
+    dos2unix \
     --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
+# Install Python dependencies
 COPY requirements.txt /app/
+
 RUN pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
+# Copy the backend project
 COPY . /app/
 
+# Normalize start.sh line endings and make it executable
 COPY start.sh /app/start.sh
 
-RUN apt-get update && apt-get install -y dos2unix --no-install-recommends && \
-    dos2unix /app/start.sh && \
-    rm -rf /var/lib/apt/lists/*
-
-
-RUN chmod +x /app/start.sh
+RUN dos2unix /app/start.sh && \
+    chmod +x /app/start.sh
 
 EXPOSE 8000
 
-CMD ["/app/start.sh"]
+# Start the application using start.sh
+CMD ["sh", "/app/start.sh"]
